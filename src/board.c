@@ -25,10 +25,14 @@ char*** create_board(cell_state state[24][24] ,cell_color color[24][24]){
 
 void print_board(char ***board , cell_state state[24][24] , cell_color colors[24][24]){
     printf("   ");
+    printf("%s",YELLOW);
     for(int i = 0 ; i<24 ; i++ ) printf("%-4d" , i+1);
     printf("\n\n");
+    printf("%s",COLOR_RESET);
     for(int i = 0 ; i < 24 ; i++){
+        printf("%s",YELLOW);
         printf("%-4d",i+1);
+        printf("%s",COLOR_RESET);
         for(int j = 0 ; j < 24 ; j++){
             if(colors[i][j] == red) printf("%s",RED);
             else if(colors[i][j] == blue) printf("%s",BLUE);
@@ -40,9 +44,9 @@ void print_board(char ***board , cell_state state[24][24] , cell_color colors[24
     }
 }
 
-void mark_board(char ****board , int row , int col , char *s , cell_state state[24][24] , cell_color colors[24][24] ,int pl){
-    strcpy(*board[row-1][col-1],s) ;
-    state[row-1][col] = marked ;
+void mark_board(char ***board , int row , int col , char *s , cell_state state[24][24] , cell_color colors[24][24] ,int pl){
+    strcpy(board[row-1][col-1],s) ;
+    state[row-1][col-1] = marked ;
     if(pl == 1){
         colors[row-1][col-1] = red ;
     }else if(pl == 2){

@@ -14,10 +14,10 @@ int main(){
         print_board(board , state , color);
         print_turn(pl);
         int choice = print_menu();
-        if(choice == 1) marker(&board , pl , state, color);
+        if(choice == 1) marker(board , pl , state, color);
         else if(choice == 2){
-            printf("%-20s","Good_Bye....\n");
-            printf("Exiting....\n");
+            printf("Good_Bye....\n");
+            printf("Exiting...\n");
             break ;
         }
         if(pl == 1) pl = 2 ;
