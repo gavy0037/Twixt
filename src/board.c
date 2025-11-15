@@ -9,7 +9,7 @@ char*** create_board(cell_state state[24][24] ,cell_color color[24][24]){
     for(int i = 0 ; i < 24 ; i++){
         board[i] = malloc(sizeof(char*)*24);
         for(int j = 0 ; j  < 24 ;  j++){
-            board[i][j] = malloc(sizeof(char)*4);
+            board[i][j] = malloc(sizeof(char)*32);
         }
     }
     
