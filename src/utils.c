@@ -7,6 +7,11 @@ int print_menu(){
     printf("1.Mark\n2.Quit\nEnter Choice Number : ");
     int c ;
     scanf("%d",&c);
+    getchar();
+    while(c != 1 && c != 2){
+        printf("Please enter 1 or 2 as choice : ");
+        scanf("%d",&c);
+    }
     return c ;
 }
 
@@ -21,7 +26,13 @@ void print_turn(int pl){
 void marker(char ***board ,int pl , cell_state state[24][24]  , cell_color color[24][24]){
     printf("Enter Row and Coloumn you want to mark: ");
     int row , col ;
-    scanf("%d %d",&row , &col);
+    int a = scanf("%d %d",&row , &col);
+    getchar();
+    while((row>24 && col > 24)||a != 2){
+        printf("Please enter valid row and coloumn\n");
+        a = scanf("%d %d",&row , &col);
+        getchar();
+    }
     char m[2];
     if(pl == 1){
         strcpy(m , "X");

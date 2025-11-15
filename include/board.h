@@ -10,7 +10,10 @@
 typedef enum state{
   unmarked = 0 ,
   marked,
-  linked
+  linked1,
+  linked2
+  //linked 1 means it will contain only one * and liked 2 means i will contain 2 stars
+  //so that i can easily see if it is the peg of same player or opposite player
 } cell_state ;
 
 typedef enum color{
