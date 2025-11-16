@@ -27,7 +27,7 @@ typedef enum color{
 char*** create_board(cell_state state[24][24] ,cell_color color[24][24]) ;
 
 void print_board(char ***board , cell_state state[24][24] ,cell_color color[24][24] );
-void mark_board(char ***board , int row , int col , char *s , cell_state states[24][24],cell_color colors[24][24] ,int pl);//will pass the s according to the move made by specific player
+int mark_board(char ***board , int row , int col , char *s , cell_state states[24][24],cell_color colors[24][24] ,int pl);//will pass the s according to the move made by specific player
 void free_board(char ****board);
 
 #endif

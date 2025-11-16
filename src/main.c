@@ -23,4 +23,6 @@ int main(){
         if(pl == 1) pl = 2 ;
         else pl = 1;
     }
+
+    free_board(&board);
 }

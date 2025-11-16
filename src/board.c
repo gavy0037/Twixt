@@ -44,7 +44,10 @@ void print_board(char ***board , cell_state state[24][24] , cell_color colors[24
     }
 }
 
-void mark_board(char ***board , int row , int col , char *s , cell_state state[24][24] , cell_color colors[24][24] ,int pl){
+int mark_board(char ***board , int row , int col , char *s , cell_state state[24][24] , cell_color colors[24][24] ,int pl){
+    if(state[row][col] != unmarked){
+        return 0 ;
+    }
     strcpy(board[row-1][col-1],s) ;
     state[row-1][col-1] = marked ;
     if(pl == 1){
@@ -52,6 +55,7 @@ void mark_board(char ***board , int row , int col , char *s , cell_state state[2
     }else if(pl == 2){
         colors[row-1][col-1] = blue; 
     }
+    return 1 ;
 }
 
 void free_board(char ****board){

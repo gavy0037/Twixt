@@ -24,20 +24,24 @@ void print_turn(int pl){
 }
 
 void marker(char ***board ,int pl , cell_state state[24][24]  , cell_color color[24][24]){
-    printf("Enter Row and Coloumn you want to mark: ");
     int row , col ;
-    int a = scanf("%d %d",&row , &col);
-    getchar();
-    while((row>24 && col > 24)||a != 2){
-        printf("Please enter valid row and coloumn\n");
-        a = scanf("%d %d",&row , &col);
+    int marked = 0 ;
+    do{
+        printf("Enter Row and Column you want to mark: ");
+        int a = scanf("%d %d",&row , &col);
         getchar();
-    }
-    char m[2];
-    if(pl == 1){
-        strcpy(m , "X");
-    }else if(pl == 2){
-        strcpy( m , "O");
-    }
-    mark_board(board , row , col , m , state , color , pl);
+        while(row>24 || col > 24 || row<1 || col<1 ||a != 2){
+            printf("Please enter valid row and column\n");
+            a = scanf("%d %d",&row , &col);
+            getchar();
+        }
+        if(pl == 1){
+            marked = mark_board(board , row , col , "X" , state , color , pl);
+        }else if(pl == 2){
+            marked = mark_board(board , row , col , "O" , state , color , pl);
+        }
+        if(!marked){
+            printf("Cell already marked\nSelect another cell\n");
+        }
+    }while(!marked);
 }
