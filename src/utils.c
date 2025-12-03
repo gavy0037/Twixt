@@ -82,7 +82,7 @@ int check_win(cell_state board_state[24][24],cell_color color[24][24] ,int playe
 
         //go thorugh all the coloums
         for(int c = 0 ; c < 23 ; c++){
-            int found =  1;
+            int found =  0 ;
 
             for(int i = 0 ; i < 24 ; i++){
                 if(reachable[i][c]){

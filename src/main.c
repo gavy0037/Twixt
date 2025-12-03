@@ -18,7 +18,7 @@ int main(){
         print_board(board , state , color);
         print_turn(pl);
         int choice = print_menu();
-        if(choice == 1)if(choice == 1) {
+        if(choice == 1){
             int row, col;
             int marked = 0;
             do{
