@@ -5,6 +5,10 @@
 #include"../include/board.h"
 #include"../include/linking.h"
 
+
+/*
+at staring of game it creates a 3d array and initialize the color and state arrays
+*/
 char*** create_board(cell_state state[24][24] ,cell_color color[24][24]){
     char*** board = malloc(sizeof(char**)*24);
     for(int i = 0 ; i < 24 ; i++){
@@ -24,6 +28,15 @@ char*** create_board(cell_state state[24][24] ,cell_color color[24][24]){
     return board ;
 }
 
+
+/*
+prints the board after every turn
+if the cell is not marked then it prints .
+if it is marked the print X or O
+
+if it is linked then it printf *X* or *O*
+
+*/
 void print_board(char ***board , cell_state state[24][24] , cell_color colors[24][24]){
     printf("    ");
     printf("%s",YELLOW);
@@ -38,7 +51,7 @@ void print_board(char ***board , cell_state state[24][24] , cell_color colors[24
         for(int j = 0 ; j < 24 ; j++){
             int linked = 0 ;
             char to_write[10] ; 
-            for(int k = 0; k < link_counter; k++) {
+            for(int k = 0; k < link_counter; k++) {//checks for the link in the link array if found then copies in the to_write string the respective thing to write
                 if((link_array[k].r1 == i && link_array[k].c1 == j) ||(link_array[k].r2 == i && link_array[k].c2 == j)) {
                     linked = 1;
                     if(link_array[k].player == 1) {
@@ -65,6 +78,7 @@ void print_board(char ***board , cell_state state[24][24] , cell_color colors[24
     }
 }
 
+//marks the board with propers string name i.e X or O
 int mark_board(char ***board , int row , int col , char *s , cell_state state[24][24] , cell_color colors[24][24] ,int pl){
     if(state[row-1][col-1] != unmarked){
         return 0 ;
@@ -79,6 +93,8 @@ int mark_board(char ***board , int row , int col , char *s , cell_state state[24
     return 1 ;
 }
 
+
+//at the end of program the 3d character array is freed
 void free_board(char ****board){
     char ***b = *board ;
 

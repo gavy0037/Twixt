@@ -1,19 +1,18 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -I./include -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function
-SRC_DIR = src
-TARGET = twixt
+CFLAGS = -Wall -Wextra -I./include
+TAR = twixt#target
 
-SOURCES = $(wildcard $(SRC_DIR)/*.c)
+SOURCES = $(wildcard src/*.c)
 
-.PHONY: all clean run help
+.PHONY: all clean run
 
-all: $(TARGET)
+all: $(TAR)
 
-$(TARGET): $(SOURCES)
+$(TAR): $(SOURCES)
 	$(CC) $(CFLAGS) -o $@ $^
 
-run: $(TARGET)
-	@./$(TARGET)
+run: $(TAR)
+	@./$(TAR)
 
 clean:
-	rm -f $(TARGET)
+	rm -f $(TAR)

@@ -17,12 +17,28 @@ int print_menu(){
 
 void print_turn(int pl){
     if(pl == 1){
-        printf("It's Red's  (X)  turn\n");
+        printf("It's (X)  turn\n");
     }else if(pl == 2){
-        printf("It's Blue's (O)  turn\n");
+        printf("It's (O)  turn\n");
     }
 }
 
+
+
+/*
+
+i will check winning by going through every row
+
+first i will mark all the row 1 pegs that are marked
+then i will mark all the pegs that are linked with row 1 pegs as reachable
+then i will mark all the pegs linked to row 2
+
+this way i will go row by row and then check at the last row if it is reacable or not
+
+if reachable then the player wins
+
+the same is done for the other player just the coloums and rows are exchanged
+*/
 int check_win(cell_state board_state[24][24],cell_color color[24][24] ,int player){
     cell_color ply = ((player == 1) ? red : blue);
 
