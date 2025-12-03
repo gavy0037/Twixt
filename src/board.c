@@ -44,7 +44,7 @@ void print_board(char ***board , cell_state state[24][24] , cell_color colors[24
     }
 }
 
-int mark_board(char ***board , int row , int col , char *s , cell_state state[24][24] , cell_color colors[24][24] ,int pl){
+int mark_board(char ***board , int row , int col , char *s , cell_state state[24][24] , cell_color colors[24][24] ,int pl , which_team team[24][24]){
     if(state[row-1][col-1] != unmarked){
         return 0 ;
     }
@@ -52,7 +52,9 @@ int mark_board(char ***board , int row , int col , char *s , cell_state state[24
     state[row-1][col-1] = marked ;
     if(pl == 1){
         colors[row-1][col-1] = red ;
+        team[row-1][col-1] = red ;
     }else if(pl == 2){
+        team[row-1][col-1] = blue ;
         colors[row-1][col-1] = blue; 
     }
     return 1 ;
