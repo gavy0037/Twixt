@@ -1,18 +1,35 @@
 CC = gcc
-SRC_DIR := src
-TARGET := twixt
+CFLAGS = -Wall -Wextra -I./include -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function
+SRC_DIR = src
+TARGET = twixt
 
-SRC := $(wildcard $(SRC_DIR)/*.c)
+# Source files
+SOURCES = $(wildcard $(SRC_DIR)/*.c)
 
-.PHONY: all clean
+# Default target
+.PHONY: all clean run help
 
 all: $(TARGET)
 
-$(TARGET): $(SRC)
-	$(CC) $^ -o $@
+# Build executable directly without object files
+$(TARGET): $(SOURCES)
+	$(CC) $(CFLAGS) -o $@ $^
+	@echo "✓ Build complete: $(TARGET)"
 
-run: clean all
-	./$(TARGET)
+# Run the program
+run: $(TARGET)
+	@./$(TARGET)
 
+# Clean build artifacts
 clean:
-	rm -rf	 twixt
+	rm -f $(TARGET)
+	@echo "✓ Clean complete"
+
+# Display help
+help:
+	@echo "Twixt Game Makefile"
+	@echo "===================="
+	@echo "make        - Build the project"
+	@echo "make run    - Build and run the game"
+	@echo "make clean  - Remove executable"
+	@echo "make help   - Display this help message"
