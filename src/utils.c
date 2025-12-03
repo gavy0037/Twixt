@@ -39,13 +39,11 @@ int check_win(cell_state board_state[24][24],cell_color color[24][24] ,int playe
             }
         }
 
-        //we go row be row
-        for(int r = 0 ; r < 23 ; r++){
-            int found = 0 ;
+        //we go row by row
+        for(int r = 0 ; r < 24 ; r++){
             for(int j = 0 ; j < 24 ; j++){
-                if(reachable[r][j]){//if this cell is reachable from previous rows
-                    found = 1 ;
-                    //mark all the linked cells in the next rows from the current cell
+                if(reachable[r][j]){//if this cell is reachable
+                    //mark all the linked cells from the current cell
                     for(int i = 0 ; i < link_counter ; i++){
                         if(link_array[i].player == player){
                             int a = -1, b = -1;
@@ -58,12 +56,11 @@ int check_win(cell_state board_state[24][24],cell_color color[24][24] ,int playe
                             }
 
                             //mark all the pegs linked to the current that are not yet reachable
-                            if(a != -1 && a > r && !reachable[a][b]) reachable[a][b] = 1 ;
+                            if(a != -1 && !reachable[a][b]) reachable[a][b] = 1 ;
                         }
                     }
                 }
             }
-            if(!found) break ;//no cell is reachabale in current row
         }
 
         //now see if any cell in the last row is reachable
@@ -71,22 +68,17 @@ int check_win(cell_state board_state[24][24],cell_color color[24][24] ,int playe
             if(reachable[23][j]) return 1 ;
         }
     }else{
-        //mark all the coloumn 0 as reachable
-
-
+        //mark all the column 0 as reachable
         for(int i = 0 ; i < 24 ; i++){
             if(board_state[i][0] == marked && color[i][0] == ply){
                 reachable[i][0] = 1 ;
             }
         }
 
-        //go thorugh all the coloums
-        for(int c = 0 ; c < 23 ; c++){
-            int found =  0 ;
-
+        //go through all the columns
+        for(int c = 0 ; c < 24 ; c++){
             for(int i = 0 ; i < 24 ; i++){
                 if(reachable[i][c]){
-                    found = 1; 
                     for(int k = 0 ; k < link_counter ; k++){
                         if(link_array[k].player == player){
                             int a = -1  , b = -1 ;
@@ -98,12 +90,11 @@ int check_win(cell_state board_state[24][24],cell_color color[24][24] ,int playe
                                 b = link_array[k].c1;
                             }
 
-                            if(a != -1 && b > c && !reachable[a][b]) reachable[a][b] = 1; 
+                            if(a != -1 && !reachable[a][b]) reachable[a][b] = 1; 
                         }
                     }
                 }
             }
-            if(!found) break ;
         }
 
         for(int i = 0 ;i < 24 ; i++){

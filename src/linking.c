@@ -2,13 +2,17 @@
 
 #include"../include/linking.h"
 
-int abs(int a){
+link link_array[100000];
+int link_counter = 0;
+
+
+int abs1(int a){
     return a > 0 ? a : -a ;
 }
 
 int is_valid_link_distance(int r1, int c1, int r2, int c2){
-    int a = abs(r2-r1);
-    int b = abs(c2-c1);
+    int a = abs1(r2-r1);
+    int b = abs1(c2-c1);
 
     return (b == 2 && a== 1) || (a ==2 && b == 1);
 }
@@ -43,19 +47,6 @@ int link_exists(int r1, int c1, int r2, int c2) {
         }
     }
     return 0;
-}
-
-void remove_link(int r1 , int c1 , int r2 , int c2){
-    for(int i = 0; i < link_counter; i++) {
-        if((link_array[i].r1 == r1 && link_array[i].c1 == c1 && link_array[i].r2 == r2 && link_array[i].c2 == c2) ||(link_array[i].r2 == r1 && link_array[i].c2 == c1 && link_array[i].r1 == r2 && link_array[i].c1 == c2)) {
-            //Shift other links
-            for(int j = i; j < link_counter - 1; j++) {
-                link_array[j] = link_array[j + 1];
-            }
-            link_counter--;
-            return;
-        }
-    }
 }
 
 int can_link(int r1, int c1, int r2, int c2, cell_state board_state[24][24] , cell_color color[24][24] ,int player) {
@@ -101,9 +92,10 @@ void auto_link(int r , int c ,int player , cell_state board_state[24][24] , cell
         int newcol = c + col[i];
         if(newrow < 0 || newcol <0 || newrow >23 || newcol > 23) continue ;
 
-    if(board_state[newrow][newcol] == marked && color[newrow][newcol] == color[r][c])
-        if(can_link(r, c, newrow, newcol, board_state, color,player)){
-            link_two_points(r, newrow, c, newcol, player);
+        if(board_state[newrow][newcol] == marked && color[newrow][newcol] == color[r][c]){
+            if(can_link(r, c, newrow, newcol, board_state, color,player)){
+                link_two_points(r, newrow, c, newcol, player);
+            }
         }
     }
 }
